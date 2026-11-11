@@ -1,7 +1,6 @@
 # Variablenwahl nach Aktivität – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-variablenwahl-sat-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-variablenwahl-sat-demo.streamlit.app/)**
 
 Demo der Linie **SAT und Constraint Programming** in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Sie baut auf dem Konfliktlernen auf (die Frage: was eine feste Reihenfolge der Variablen kostet) und zeigt **eine Frage an einem wachsenden Beispiel**: Ein Löser, der aus Konflikten lernt, muss bei jeder Entscheidung eine Variable und einen Wert wählen. Wie viele Konflikte er braucht, hängt stark von dieser Wahl ab. Vehikel sind Zufalls-3-SAT als Wachstumsmaß, die Färbung eines Konfliktgraphen (Aufträge auf Rampen, Zeitfenster im Konflikt) und Schur-Partitionen an der Grenze der Lösbarkeit.
 
