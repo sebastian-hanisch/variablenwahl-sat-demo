@@ -14,6 +14,7 @@ import streamlit as st
 import vsd_algorithm as A
 import vsd_constants as C
 import vsd_evaluation as E
+import vsd_fortschritt as F
 import vsd_presets as P
 import vsd_scenario as S
 import vsd_visualization as V
@@ -39,11 +40,6 @@ def _schrittlauf(formel, klein_n, klein_seed, wahl, phase, zerfall):
     folge = A.schritte(res.spur, inst.n, zerfall, phasenspeicher=phase, vsids=(wahl == A.WAHL_AKTIVITAET))
     return {"n": inst.n, "klauseln": [tuple(k) for k in inst.klauseln], "antwort": res.antwort, "modell": res.modell,
             "stat": res.stat, "schritte": folge, "gekuerzt": res.spur_gekuerzt}
-
-
-@st.cache_data(show_spinner=False)
-def _live(art, groesse, anzahl, budget, verfahren):
-    return E.messe_live(art, groesse, anzahl, budget, list(verfahren))
 
 
 def _klausel_zeile(i, k):
@@ -227,9 +223,10 @@ def _live_panel(exp: str, verfahren: list[str], beschriftung: dict, farben: dict
                            key=f"live_anzahl_{exp}_{art}")
         budget = c3.slider("Budget (Konflikte)", *C.BUDGET_LIVE, value=C.DEFAULT_BUDGET_LIVE, step=500, key=f"live_budget_{exp}")
         signatur = (art, groesse, anzahl, budget)
-        if st.button("Messreihe live starten", key=f"live_go_{exp}", help="Je nach Größe und Budget bis zu etwa einer Minute."):
-            with st.spinner("Die Messreihe läuft (bis zu etwa einer Minute) …"):
-                st.session_state[f"live_{exp}"] = {"sig": signatur, "daten": _live(art, groesse, anzahl, budget, tuple(verfahren))}
+        if st.button("Messreihe live starten", key=f"live_go_{exp}",
+                     help="Ein Fortschrittsbalken zählt die fertigen Läufe; schon gerechnete Läufe kommen beim erneuten Start aus dem Zwischenspeicher."):
+            with F.fortschrittsbalken("Die Messreihe läuft, fertige Läufe") as melde:
+                st.session_state[f"live_{exp}"] = {"sig": signatur, "daten": F.messreihe(art, groesse, anzahl, budget, list(verfahren), melde)}
         gespeichert = st.session_state.get(f"live_{exp}")
         if gespeichert and gespeichert["sig"] == signatur:
             d = gespeichert["daten"]

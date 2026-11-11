@@ -30,7 +30,7 @@ Die Aktivität merkt sich, welche Variablen an den letzten Konflikten beteiligt 
 | Messreihen, Kennzahlen, Verdikte | `vsd_evaluation.py` | Verdikte sind reine Funktionen; jede Zahl im Text stammt aus den Kennzahlen |
 | Vorgerechnete Messreihen | `vsd_messungen.json` | geschrieben von `tools/messungen.py` (dieselben Funktionen wie die Live-Messreihen) |
 
-Experimente in der App: **Eine Formel Schritt für Schritt** (Handbeispiel F3 oder eine kleine Zufallsformel mit 8 bis 12 Variablen), **Kernfrage** (Aktivität gegen feste Reihenfolge), **Hilft der Phasenspeicher?**, **Wie viel Gewicht haben alte Konflikte?** (Zerfall 0,5 / 0,8 / 0,95 / 0,99 / 1,0). Die großen Messreihen sind **vorgerechnet, nicht live**; je Experiment rechnet ein Knopf eine kleinere Messreihe derselben Familie live nach (Größe, Zahl der Läufe und Budget einstellbar, Zerfall 0,95).
+Experimente in der App: **Eine Formel Schritt für Schritt** (Handbeispiel F3 oder eine kleine Zufallsformel mit 8 bis 12 Variablen), **Kernfrage** (Aktivität gegen feste Reihenfolge), **Hilft der Phasenspeicher?**, **Wie viel Gewicht haben alte Konflikte?** (Zerfall 0,5 / 0,8 / 0,95 / 0,99 / 1,0). Die großen Messreihen sind **vorgerechnet, nicht live**; je Experiment rechnet ein Knopf eine kleinere Messreihe derselben Familie live nach (Größe, Zahl der Läufe und Budget einstellbar, Zerfall 0,95); ein Fortschrittsbalken zählt die fertigen Läufe, und schon gerechnete Läufe kommen beim erneuten Start aus dem Zwischenspeicher (`vsd_fortschritt.py`, ohne Änderung der Rechnung).
 
 ## Befunde (gemessen, keine Behauptungen)
 
@@ -106,6 +106,7 @@ Die **Richtung und Größenordnung der Kernfrage** reproduzieren sich (feste Rei
 | `vsd_cdcl.py`, `vsd_instanzen.py`, `vsd_rng.py` | wörtliche Kopien der Kern-Module (Herkunft und Kern-Version im Kopf) |
 | `vsd_constants.py` | Aufgaben, Regler-Grenzen, Farben, Presets |
 | `vsd_evaluation.py` | Messreihen, Kennzahlen, Verdikte |
+| `vsd_fortschritt.py` | Fortschrittsbalken und Zwischenspeicher für die Live-Messreihen (je Lauf; keine eigene Rechnung) |
 | `vsd_layout.py` | Fester Kopf (Stylesheet) |
 | `vsd_messungen.json` | vorgerechnete Messreihen (Konflikte je Lauf) |
 | `vsd_presets.py` | Permalink (Einrasten), Presets, Zufalls-Seed-Button |
